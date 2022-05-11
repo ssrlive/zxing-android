@@ -25,9 +25,12 @@
   - Android SDK Tools
 
 ```bash
-git clone https://github.com/shadowsocksRb/zxing-android.git
+# 在 Windows 下，要設置 JAVA_HOME 環境變量。
+set JAVA_HOME="C:\Program Files\Android\Android Studio\jre"
+
+git clone https://github.com/ssrlive/zxing-android.git
 cd zxing-android
 # 建议编辑 app/build.gradle ，修改 applicationId 以避免冲突
 ./gradlew aR
-adb install app/build/outputs/apk/release/app-release.apk
+adb install app/build/outputs/apk/release/BarcodeScanner-release-492.apk
 ```

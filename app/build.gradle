@@ -4,11 +4,11 @@ android {
     compileSdkVersion 31
 
     defaultConfig {
-        applicationId 'io.github.shadowsocksrb.zxing'
+        applicationId 'com.ssrlive.barcodescanner'
         minSdkVersion 19
         targetSdkVersion 31
-        versionCode 491
-        versionName '4.9.1'
+        versionCode 492
+        versionName '4.9.2'
     }
 
     buildTypes {
@@ -19,14 +19,14 @@ android {
             proguardFiles 'proguard-rules.pro'
             applicationVariants.all { variant ->
                 variant.outputs.all {
-                    outputFileName = "${appBinaryName}_${variant.buildType.name}_${defaultConfig.versionCode}.apk"
+                    outputFileName = "${appBinaryName}-${variant.buildType.name}.apk"
                 }
             }
         }
         debug {
             applicationVariants.all { variant ->
                 variant.outputs.all {
-                    outputFileName = "${appBinaryName}_${variant.buildType.name}_${defaultConfig.versionCode}.apk"
+                    outputFileName = "${appBinaryName}-${variant.buildType.name}-${defaultConfig.versionCode}.apk"
                 }
             }
         }
