@@ -400,27 +400,23 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
   public boolean onOptionsItemSelected(MenuItem item) {
     Intent intent = new Intent(Intent.ACTION_VIEW);
     intent.addFlags(Intents.FLAG_NEW_DOC);
-    switch (item.getItemId()) {
-      case R.id.menu_share:
-        intent.setClassName(this, ShareActivity.class.getName());
-        startActivity(intent);
-        break;
-      case R.id.menu_file:
-        Intent intent1 = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        intent1.addCategory(Intent.CATEGORY_OPENABLE);
-        intent1.setType("image/*");
-        startActivityForResult(intent1, OPEN_DOCUMENT_REQUEST_CODE);
-        break;
-      case R.id.menu_history:
-        intent.setClassName(this, HistoryActivity.class.getName());
-        startActivityForResult(intent, HISTORY_REQUEST_CODE);
-        break;
-      case R.id.menu_settings:
-        intent.setClassName(this, PreferencesActivity.class.getName());
-        startActivity(intent);
-        break;
-      default:
-        return super.onOptionsItemSelected(item);
+    int itemId = item.getItemId();
+    if (itemId == R.id.menu_share) {
+      intent.setClassName(this, ShareActivity.class.getName());
+      startActivity(intent);
+    } else if (itemId == R.id.menu_file) {
+      Intent intent1 = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+      intent1.addCategory(Intent.CATEGORY_OPENABLE);
+      intent1.setType("image/*");
+      startActivityForResult(intent1, OPEN_DOCUMENT_REQUEST_CODE);
+    } else if (itemId == R.id.menu_history) {
+      intent.setClassName(this, HistoryActivity.class.getName());
+      startActivityForResult(intent, HISTORY_REQUEST_CODE);
+    } else if (itemId == R.id.menu_settings) {
+      intent.setClassName(this, PreferencesActivity.class.getName());
+      startActivity(intent);
+    } else {
+      return super.onOptionsItemSelected(item);
     }
     return true;
   }
