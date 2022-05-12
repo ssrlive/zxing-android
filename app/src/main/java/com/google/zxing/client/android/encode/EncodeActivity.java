@@ -96,23 +96,22 @@ public final class EncodeActivity extends Activity {
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case R.id.menu_share:
-        save();
-        return true;
-      case R.id.menu_encode:
-        Intent intent = getIntent();
-        if (intent == null) {
-          return false;
-        }
-        intent.putExtra(USE_VCARD_KEY, !qrCodeEncoder.isUseVCard());
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-        finish();
-        return true;
-      default:
+    int itemId = item.getItemId();
+    if (itemId == R.id.menu_share) {
+      save();
+      return true;
+    } else if (itemId == R.id.menu_encode) {
+      Intent intent = getIntent();
+      if (intent == null) {
         return false;
+      }
+      intent.putExtra(USE_VCARD_KEY, !qrCodeEncoder.isUseVCard());
+      intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+      startActivity(intent);
+      finish();
+      return true;
     }
+    return false;
   }
 
     private void save() {

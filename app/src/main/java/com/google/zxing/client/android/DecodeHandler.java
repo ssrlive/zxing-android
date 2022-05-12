@@ -54,14 +54,11 @@ final class DecodeHandler extends Handler {
     if (message == null || !running) {
       return;
     }
-    switch (message.what) {
-      case R.id.decode:
-        decode((byte[]) message.obj, message.arg1, message.arg2);
-        break;
-      case R.id.quit:
-        running = false;
-        Looper.myLooper().quit();
-        break;
+    if (message.what == R.id.decode) {
+      decode((byte[]) message.obj, message.arg1, message.arg2);
+    } else if (message.what == R.id.quit) {
+      running = false;
+      Looper.myLooper().quit();
     }
   }
 

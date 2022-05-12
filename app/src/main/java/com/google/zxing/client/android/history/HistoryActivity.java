@@ -119,28 +119,26 @@ public final class HistoryActivity extends ListActivity {
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case R.id.menu_history_send:
-        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("text/csv");
-        intent.putExtra(Intent.EXTRA_TITLE, "history-" + System.currentTimeMillis() + ".csv");
-        startActivityForResult(intent, WRITE_REQUEST_CODE);
-        break;
-      case R.id.menu_history_clear_text:
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(R.string.msg_sure);
-        builder.setCancelable(true);
-        builder.setPositiveButton(R.string.button_ok, (dialog, i2) -> {
-          historyManager.clearHistory();
-          dialog.dismiss();
-          finish();
-        });
-        builder.setNegativeButton(R.string.button_cancel, null);
-        builder.show();
-        break;
-      default:
-        return super.onOptionsItemSelected(item);
+    int itemId = item.getItemId();
+    if (itemId == R.id.menu_history_send) {
+      Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+      intent.addCategory(Intent.CATEGORY_OPENABLE);
+      intent.setType("text/csv");
+      intent.putExtra(Intent.EXTRA_TITLE, "history-" + System.currentTimeMillis() + ".csv");
+      startActivityForResult(intent, WRITE_REQUEST_CODE);
+    } else if (itemId == R.id.menu_history_clear_text) {
+      AlertDialog.Builder builder = new AlertDialog.Builder(this);
+      builder.setMessage(R.string.msg_sure);
+      builder.setCancelable(true);
+      builder.setPositiveButton(R.string.button_ok, (dialog, i2) -> {
+        historyManager.clearHistory();
+        dialog.dismiss();
+        finish();
+      });
+      builder.setNegativeButton(R.string.button_cancel, null);
+      builder.show();
+    } else {
+      return super.onOptionsItemSelected(item);
     }
     return true;
   }
