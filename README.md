@@ -16,6 +16,35 @@
 - 振动。成功扫描后可选的振动提醒
 - 控制和查看 WLAN 网络。直接连接扫描到的 WLAN 二维码
 
+### 用法
+
+```diff
+diff --git a/mobile/build.gradle b/mobile/build.gradle
+index 77f30dd2..4898c4af 100644
+--- a/mobile/build.gradle
++++ b/mobile/build.gradle
+@@ -90,7 +90,7 @@ dependencies {
+     implementation 'androidx.browser:browser:1.4.0'
+     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
++    implementation 'com.github.ssrlive:zxing-android:v4.9.3'
+     implementation 'com.takisoft.preferencex:preferencex-simplemenu:1.1.0'
+     implementation 'com.twofortyfouram:android-plugin-api-for-locale:1.0.4'
+     implementation 'me.zhanghai.android.fastscroll:library:1.1.8'
+diff --git a/settings.gradle b/settings.gradle
+index ad74650a..0e664b40 100644
+--- a/settings.gradle
++++ b/settings.gradle
+@@ -20,6 +20,7 @@ dependencyResolutionManagement {
+         google()
+         mavenCentral()
+         jcenter()
++        maven { url 'https://jitpack.io' }
+     }
+ }
+ include ':mobile', ':core', ':plugin'
+```
+
 ### 构建
 
 * OpenJDK 1.8+
@@ -31,6 +60,9 @@ set JAVA_HOME="C:\Program Files\Android\Android Studio\jre"
 git clone https://github.com/ssrlive/zxing-android.git
 cd zxing-android
 # 建议编辑 app/build.gradle ，修改 applicationId 以避免冲突
+
 ./gradlew aR
-adb install app/build/outputs/apk/release/BarcodeScanner-release-492.apk
+
+ls app/build/outputs/aar/BarcodeScanner-release.aar
+
 ```
