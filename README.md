@@ -45,6 +45,24 @@ index ad74650a..0e664b40 100644
  include ':mobile', ':core', ':plugin'
 ```
 
+```kotlin
+    private const val REQUEST_SCAN_QRCODE = 4
+
+    try {
+        val intent = Intent("com.google.zxing.client.android.SCAN")
+        intent.putExtra("SCAN_MODE", "QR_CODE_MODE")
+        startActivityForResult(intent, REQUEST_SCAN_QRCODE)
+    } catch (_: ActivityNotFoundException) {
+        (activity as MainActivity).launchUrl(getString(R.string.faq_url))
+    }
+
+    REQUEST_SCAN_QRCODE -> {
+        val contents = data?.getStringExtra("SCAN_RESULT")
+        val uri = Uri.parse(contents)
+        startActivity(Intent(context, UrlImportActivity::class.java).setData(uri))
+    }
+```
+
 ### 构建
 
 * OpenJDK 1.8+
